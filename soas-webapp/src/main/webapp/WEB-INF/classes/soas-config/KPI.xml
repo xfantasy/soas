@@ -1,0 +1,90 @@
+<Schema name="KPI">
+
+  <Cube name="KPICube" visible="true" cache="true" enabled="true">
+    <Table name="ST_KPI_BASE_DS" schema="ADC">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="KPI_ID" name="DIM_KPI">
+      <Hierarchy name="CRM_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_KPI_BASE" schema="ADC">
+        	<SQL dialect="oracle">substr(KPI_CODE,0,3)='CRM' and DATE_TYPE='D'</SQL>
+        </Table>
+        <Level name="CRM_KPI_ID" visible="true" table="DIM_KPI_BASE" column="KPI_ID" nameColumn="KPI_NAME" uniqueMembers="true">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="WAP_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_KPI_BASE" schema="ADC">
+        	<SQL dialect="oracle">substr(KPI_CODE,0,3)='WAP' and DATE_TYPE='D'</SQL>
+        </Table>
+        <Level name="WAP_KPI_ID" visible="true" table="DIM_KPI_BASE" column="KPI_ID" nameColumn="KPI_NAME" uniqueMembers="true">
+        </Level>
+      </Hierarchy>
+            <Hierarchy name="CUS_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_KPI_BASE" schema="ADC">
+        	<SQL dialect="oracle">substr(KPI_CODE,0,3)='CUS' and DATE_TYPE='D'</SQL>
+        </Table>
+        <Level name="CUS_KPI_ID" visible="true" table="DIM_KPI_BASE" column="KPI_ID" nameColumn="KPI_NAME" uniqueMembers="true">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="APY_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_KPI_BASE" schema="ADC">
+        	<SQL dialect="oracle">substr(KPI_CODE,0,3)='APY' and DATE_TYPE='D'</SQL>
+        </Table>
+        <Level name="APY_KPI_ID" visible="true" table="DIM_KPI_BASE" column="KPI_ID" nameColumn="KPI_NAME" uniqueMembers="true">
+        </Level>
+      </Hierarchy>
+            <Hierarchy name="FIN_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_KPI_BASE" schema="ADC">
+        	<SQL dialect="oracle">substr(KPI_CODE,0,3)='FIN' and DATE_TYPE='D'</SQL>
+        </Table>
+        <Level name="FIN_KPI_ID" visible="true" table="DIM_KPI_BASE" column="KPI_ID" nameColumn="KPI_NAME" uniqueMembers="true">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="CHG_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_KPI_BASE" schema="ADC">
+        	<SQL dialect="oracle">substr(KPI_CODE,0,3)='CHG' and DATE_TYPE='D'</SQL>
+        </Table>
+        <Level name="CHG_KPI_ID" visible="true" table="DIM_KPI_BASE" column="KPI_ID" nameColumn="KPI_NAME" uniqueMembers="true">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="REPORT_DATE" name="DIM_TIME">
+	    <Hierarchy hasAll="false" primaryKey="DAYID">
+	      <Table name="DIM_PUB_DATE" schema="ADC"/>
+	      <Level name="DAY" visible="true" table="DIM_PUB_DATE" column="DAYID" uniqueMembers="true"/>      
+	    </Hierarchy>
+  	</Dimension>
+    <Measure name="KPI_Measure" column="KPI_VALUE" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+  
+  <Cube name="CRMCube" visible="true" cache="true" enabled="true">
+    <Table name="ST_CRM_ATT" schema="ADC">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CAT_ID" name="DIM_CRM_CAT">
+      <Hierarchy name="CAT_Hierarchy" visible="true" hasAll="true">
+        <Table name="DIM_CRM_CONTACT_CAT" schema="ADC">
+        </Table>
+        <Level name="GGRAND_TITLE"  column="GGRAND_ID"  captionColumn="GGRAND_TITLE" uniqueMembers="true"/>
+        <Level name="GRAND_TITLE"  column="GRAND_ID" captionColumn="GRAND_TITLE" uniqueMembers="true"/>
+        <Level name="FATHER_TITLE"  column="FATHER_ID" captionColumn="FATHER_TITLE" uniqueMembers="true"/>
+        <Level name="CAT_TITLE"  column="CAT_ID" captionColumn="CAT_TITLE" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="REPORT_DATE" name="DIM_TIME">
+	    <Hierarchy hasAll="false" primaryKey="DAYID">
+	      <Table name="DIM_PUB_DATE" schema="ADC"/>
+	      <Level name="DAY" visible="true" table="DIM_PUB_DATE" column="DAYID" uniqueMembers="true"/>      
+	    </Hierarchy>
+  	</Dimension>
+      <Measure name="TM_sum" column="TALK_TM" aggregator="sum" visible="true"/>
+      <Measure name="TM_avg" column="TALK_TM" aggregator="avg" visible="true"/>
+      <Measure name="TM_min" column="TALK_TM" aggregator="min" visible="true"/>
+      <Measure name="TM_max" column="TALK_TM" aggregator="max" visible="true"/>
+      <Measure name="TM_count" column="TALK_TM" aggregator="count" visible="true"/>
+      <Measure name="TM_distinct_count" column="TALK_TM" aggregator="distinct-count" visible="true"/>
+    	<Measure name="TALK_CNT" column="TALK_CNT" aggregator="sum" visible="true"/>
+    	<CalculatedMember name="TM-CNT" dimension="Measures">
+     			<Formula>[Measures].[TALK_TM] - [Measures].[TALK_CNT]</Formula>
+      </CalculatedMember>
+  </Cube>
+</Schema>
