@@ -198,7 +198,7 @@ var WorkspaceDropZone = Backbone.View.extend({
                 target, index);
 
         //TODO 自动弹出过滤的内容
-        if ("FILTER" == target&&$axis.find('a').attr("title"!="[DIM_TIME].[DAY]")) {
+        if ("FILTER" === target&&$axis.find('a').attr('title')!="[DIM_TIME].[DAY]") {
             var ev = { target : $axis.find('a[href="#' + member + '"]') };
             this.selections(ev, ui);
 
