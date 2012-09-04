@@ -44,7 +44,7 @@
         </property>
     </bean>
 
-    <bean id="dataToOracle" class="org.saiku.web.dao.dataToOracle">
+    <bean id="soasDao" class="org.saiku.web.dao.soasDao">
         <property name="dataSource">
             <ref bean="dataSource"/>
         </property>

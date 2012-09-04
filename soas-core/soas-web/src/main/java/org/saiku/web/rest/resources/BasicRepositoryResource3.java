@@ -1,9 +1,7 @@
 package org.saiku.web.rest.resources;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.ws.rs.DELETE;
@@ -13,7 +11,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -49,7 +46,7 @@ public class BasicRepositoryResource3 {
     //static boolean conn_bool=false;
     //static Connection conn=null;
     //static Statement stmt=null;
-    static dataToOracle dao=null;//初始化关于连接oracle的变量
+    static soasDao dao=null;//初始化关于连接oracle的变量
 
 
 
@@ -60,7 +57,7 @@ public class BasicRepositoryResource3 {
         try{
             ApplicationContext ctx=new ClassPathXmlApplicationContext("soasManager.xml");
             //DataSource dataSource =(DataSource)ctx.getBean("dataSource");//连接池数据源
-            dao=(dataToOracle)ctx.getBean("dataToOracle");
+            dao=(soasDao)ctx.getBean("soasDao");
             //if(!conn_bool){
                 //InitialContext initCtx=new InitialContext();
                 //DataSource ds=(DataSource)initCtx.lookup("java:comp/env/jdbc/foodmart-ds");//获取数据源

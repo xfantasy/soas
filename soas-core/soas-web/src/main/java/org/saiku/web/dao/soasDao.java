@@ -18,7 +18,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.saiku.web.dao.Save;
 /*dao*/
 
-public class dataToOracle extends SqlMapClientDaoSupport implements Idao {
+public class soasDao extends SqlMapClientDaoSupport implements Idao {
 
     public void deleteRecord(Save save){//通过id删除存档
         getSqlMapClientTemplate().delete("deleteRecord",save.getID());
