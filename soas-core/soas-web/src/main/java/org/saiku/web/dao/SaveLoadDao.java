@@ -7,24 +7,22 @@ package org.saiku.web.dao;
  * Time: 下午3:26
  * To change this template use File | Settings | File Templates.
  */
-import java.sql.SQLClientInfoException;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 
+import org.saiku.web.bean.ResourceBean;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
-import org.saiku.web.dao.Save;
 /*dao*/
 
-public class soasDao extends SqlMapClientDaoSupport implements Idao {
+public class SaveLoadDao extends SqlMapClientDaoSupport implements ISaveLoad {
 
-    public void deleteRecord(Save save){//通过id删除存档
+    public void deleteRecord(ResourceBean save){//通过id删除存档
         getSqlMapClientTemplate().delete("deleteRecord",save.getID());
     };
 
-    public void insertRecord(Save save){//存档
+    public void insertRecord(ResourceBean save){//存档
         Map<String,String>map=new HashMap<String, String>();
         map.put("filetmp",save.getFilename());
         map.put("content",save.getContent());
@@ -32,8 +30,8 @@ public class soasDao extends SqlMapClientDaoSupport implements Idao {
        getSqlMapClientTemplate().insert("insertRecord",map);
     }
 
-    public Save readRecord(Save save){//通过id来读档
-       return (Save)getSqlMapClientTemplate().queryForObject("selectRecord",save.getID());
+    public ResourceBean readRecord(ResourceBean save){//通过id来读档
+       return (ResourceBean)getSqlMapClientTemplate().queryForObject("selectRecord",save.getID());
 
     }
 
