@@ -33,7 +33,7 @@ import org.saiku.web.dao.SaveLoadDao;
  * User: zhisheng.hzs
  * Date: 12-8-23
  * Time: 上午9:47
- * To change this template use File | Settings | File Templates.
+ * 应用层，通过dao来存取数据库的内容。
  */
 
 

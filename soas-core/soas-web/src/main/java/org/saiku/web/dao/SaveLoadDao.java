@@ -5,7 +5,7 @@ package org.saiku.web.dao;
  * User: zhisheng.hzs
  * Date: 12-8-30
  * Time: 下午3:26
- * To change this template use File | Settings | File Templates.
+ * dao层，操作数据库。.
  */
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class SaveLoadDao extends SqlMapClientDaoSupport implements ISaveLoad {
     }
 
     public List[] readState(){//读取储存状态
-       List saveStateList=getSqlMapClientTemplate().queryForList("selectState");
+       List saveStateList=getSqlMapClientTemplate().queryForList("selectState");//
        List[] stateList=new List[2];
        List<String>nameList= new ArrayList<String>();
        List<String>IDList= new ArrayList<String>();
