@@ -175,10 +175,10 @@ public class QueryResource {
 		if (xml != null && xml.length() > 0) {
 			return olapQueryService.createNewOlapQuery(queryName, xml);
 		}
-		return olapQueryService.createNewOlapQuery(queryName, cube);
-			}
+    return olapQueryService.createNewOlapQuery(queryName, cube);
+}
 
-	@GET
+    @GET
 	@Produces({"application/json" })
 	@Path("/{queryname}/properties")
 	public Properties getProperties(@PathParam("queryname") String queryName) {
@@ -360,6 +360,7 @@ public class QueryResource {
 		try {
 
 			CellDataSet cs = olapQueryService.execute(queryName);
+
 			return RestUtil.convert(cs);
 		}
 		catch (Exception e) {
@@ -394,6 +395,7 @@ public class QueryResource {
 			} else {
 				icf = new FlattenedCellSetFormatter();
 			}
+
 
 			olapQueryService.qm2mdx(queryName);
 			CellDataSet cs = olapQueryService.executeMdx(queryName,mdx, icf);
@@ -590,7 +592,7 @@ public class QueryResource {
 	 * @param queryName the name of the query.
 	 * @param axisName the name of the axis.
 	 * @return a list of available dimensions.
-	 * @see DimensionRestPojo
+	 *
 	 */
 	@GET
 	@Produces({"application/json" })
@@ -684,7 +686,7 @@ public class QueryResource {
 	 * @param axis the name of the axis.
 	 * @param dimension the name of the axis.
 	 * @return a list of available dimensions.
-	 * @see DimensionRestPojo
+	 *
 	 */
 	@GET
 	@Produces({"application/json" })

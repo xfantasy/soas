@@ -87,4 +87,53 @@
      			<Formula>[Measures].[TALK_TM] - [Measures].[TALK_CNT]</Formula>
       </CalculatedMember>
   </Cube>
+
+  <Cube name="Higo_DemoCube" visible="true" cache="true" enabled="true">
+        <Table name="DWPAS_FACT_TABLE" schema="ADC">
+        </Table>
+        <Dimension type="StandardDimension" visible="true" foreignKey="ID" description="dimension1" name="DIM_PUC_TOTAL_TYPE" caption="缴费总类">
+            <Hierarchy name="DIM_PUC_TOTAL_TYPE" visible="true" hasAll="false">
+                <Table name="DIM_PUC_TOTAL_TYPE" schema="ADC">
+                </Table>
+                <Level name="PUC_TOTAL_TYPE"  column="ID"  captionColumn="NAME"  uniqueMembers="true"/>
+            </Hierarchy>
+        </Dimension>
+      <Dimension type="StandardDimension" visible="true" foreignKey="ID" description="dimension2" name="BIG_BIZ_TYPE" caption="缴费大类">
+          <Hierarchy name="BIG_BIZ_TYPE" visible="true" hasAll="false">
+              <Table name="DIM_PUC_BIG_BIZ_TYPE" schema="ADC">
+              </Table>
+              <Level name="BIG_BIZ_TYPE"  column="ID"  captionColumn="NAME"  uniqueMembers="true"/>
+          </Hierarchy>
+      </Dimension>
+      <Dimension type="StandardDimension" visible="true" foreignKey="ID" description="dimension3" name="SUB_BIZ_TYPE" caption="缴费小类">
+          <Hierarchy name="SUB_BIZ_TYPE" visible="true" hasAll="false">
+              <Table name="PAS_PUB_CHARGE_SUB_BIZ_TYPE" schema="ADC">
+              </Table>
+              <Level name="SUB_BIZ_TYPE"  column="ID"  captionColumn="NAME"  uniqueMembers="true"/>
+          </Hierarchy>
+      </Dimension>
+      <Dimension type="StandardDimension" visible="true" foreignKey="ID" name="CHARGE_CITY" description="dimension4" caption="缴费城市">
+          <Hierarchy name="CHARGE_CITY" visible="true" hasAll="false">
+              <Table name="DIM_PAS_PUB_CHARGE_CITY" schema="ADC">
+              </Table>
+              <Level name="CHARGE_CITY"  column="ID"  captionColumn="NAME"  uniqueMembers="true"/>
+          </Hierarchy>
+      </Dimension>
+      <Dimension type="StandardDimension" visible="true" foreignKey="ID" name="TERMINAL_TYPE" description="dimension5" caption="缴费终端">
+          <Hierarchy name="TERMINAL_TYPE" visible="true" hasAll="false">
+              <Table name="DIM_TERMINAL_TYPE" schema="ADC">
+              </Table>
+              <Level name="TERMINAL_TYPE"  column="ID"  captionColumn="NAME" uniqueMembers="true"/>
+          </Hierarchy>
+      </Dimension>
+
+        <Dimension type="StandardDimension" visible="true" foreignKey="REPORT_DATE" name="DIM_TIME" description="report_date" caption="数据日期">
+            <Hierarchy hasAll="false" primaryKey="DAYID">
+                <Table name="DIM_PUB_DATE" schema="ADC"/>
+                <Level name="DAY" visible="true" table="DIM_PUB_DATE" column="DAYID" uniqueMembers="true"/>
+            </Hierarchy>
+        </Dimension>
+        <Measure name="VALUE1" column="VALUE1" caption="动态一年用户数" description="value1" aggregator="sum" visible="true"/>
+        <Measure name="VALUE2" column="VALUE2" caption="历史累计用户数" description="value2" aggregator="sum" visible="true"/>
+    </Cube>
 </Schema>

@@ -25,7 +25,7 @@ var Settings = {
     VERSION: "ADC - Online Analytics",
     BIPLUGIN: false,
     BASE_URL: "",
-    TOMCAT_WEBAPP: "/saiku",
+    TOMCAT_WEBAPP: "/adc-olap",
     REST_MOUNT_POINT: "/rest/saiku/",
     DIMENSION_PREFETCH: true,
     ERROR_LOGGING: false,

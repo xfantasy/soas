@@ -183,7 +183,9 @@ var Query = Backbone.Model.extend({
                 //尝试
             }
         }
-        catch(e){}
+        catch(e){
+
+        }
 
     },
     

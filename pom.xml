@@ -11,6 +11,10 @@
 	</modules>
 
 	<repositories>
+        <repository>
+            <id>alipay_prod</id>
+            <url>http://mvn.test.alipay.net:8080/artifactory/repo</url>
+        </repository>
 		<repository>
 			<id>pentaho-third-party</id>
 			<url>http://repo.pentaho.org/artifactory/third-party/</url>

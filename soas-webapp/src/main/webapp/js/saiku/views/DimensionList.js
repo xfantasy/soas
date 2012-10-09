@@ -100,7 +100,7 @@ var DimensionList = Backbone.View.extend({
              $axis=$(this.workspace.el).find(".filter ul");}
          else{
          //在此修改
-        $axis = $(this.workspace.el).find(".columns ul li").length > 0 ?
+            $axis = $(this.workspace.el).find(".columns ul li").length > 0 ?
             $(this.workspace.el).find(".rows ul") :
             $(this.workspace.el).find(".columns ul");
          }

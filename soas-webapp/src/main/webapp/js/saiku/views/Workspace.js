@@ -248,8 +248,8 @@ var Workspace = Backbone.View.extend({
             $(this.el).find('.measure_tree').html('').append($(this.measure_list.el));
 
             //TODO 自动添加日期模块
-            if($('.folder_collapsed[title=DIM_TIME]').html()=="DIM_TIME"){
-                $('.folder_collapsed[title=DIM_TIME]').trigger("click");//打开time的文件夹
+            if($('.folder_collapsed[title=report_date]').html()=="数据日期"){
+                $('.folder_collapsed[title=report_date]').trigger("click");//打开time的文件夹
                 init_date= true;//用以判断是否为第一次打开
                 $('.level[title$="[DIM_TIME].[DAY]"]').trigger("click");
             }
