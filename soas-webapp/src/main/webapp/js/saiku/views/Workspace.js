@@ -211,7 +211,7 @@ var Workspace = Backbone.View.extend({
         } else {
             $(this.el).find('.workspace_fields').show();
             $(this.el).find('.workspace_editor .mdx_input').val('').addClass('hide');
-            $(this.toolbar.el).find('.auto, ,.toggle_fields, .query_scenario, .buckets, .non_empty, .swap_axis, .mdx, .switch_to_mdx').parent().show();
+            $(this.toolbar.el).find('.auto,.toggle_fields, .query_scenario, .buckets, .non_empty, .swap_axis, .mdx, .switch_to_mdx').parent().show();
             $(this.el).find('.run').attr('href','#run_query');
         }
         this.adjust();
@@ -253,6 +253,9 @@ var Workspace = Backbone.View.extend({
                 init_date= true;//用以判断是否为第一次打开
                 $('.level[title$="[DIM_TIME].[DAY]"]').trigger("click");
             }
+//            $('.folder_collapsed[title=report_date]').trigger("click");//打开time的文件夹
+//            init_date= true;//用以判断是否为第一次打开
+//            $('.level[title$="[DIM_TIME].[DAY]"]').trigger("click");
             return;
             //自动添加一个year
         } else {
